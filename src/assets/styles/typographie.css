@@ -1,0 +1,70 @@
+h2 {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 35px;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+h1.page-header {
+    font-weight: 500;
+    font-size: 182px;
+    line-height: 182px;
+    height: 140px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+h2 {
+    font-size: 15px;
+    line-height: normal;
+    color: #000000; 
+    background-color: white; 
+    margin: 0;
+    display: inline;
+}
+
+@media (min-width: 750px) {
+    h2 {
+        font-size: 30px;
+        line-height: 116%;
+    }
+}
+
+h2.title {
+    text-transform: uppercase;
+}
+
+.caption {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    background-color: white;
+}
+
+.info {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 17.25px;
+    font-family: Arial;
+    background-color: white;
+}
+
+.icon {
+    height: 21px;
+    width: 21px;
+    padding: 7px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

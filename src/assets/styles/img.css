@@ -1,0 +1,12 @@
+.hochformat {
+    height: 680px;
+    width: 490px;
+}
+.querformat {
+    height: 680px;
+    width: 770px;
+}
+
+.img-disabled {
+    background-color: var(--yellow);
+}

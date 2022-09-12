@@ -1,0 +1,15 @@
+html {
+  height: 100%;
+}
+
+body {   
+  font-family: Riforma;
+  margin: var(--default-gap-mobile);
+  height: 100%;
+}
+
+@media (min-width: 750px) {
+  body {
+      margin: var(--default-gap-desktop);
+  }
+}

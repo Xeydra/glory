@@ -1,0 +1,23 @@
+button {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+button.icon-button {
+    height: unset;
+}
+
+button > * {
+    background-color: white;
+}
+button:hover > * {
+    background-color: var(--pink);
+}
+button.active > * {
+    background-color: var(--pink);
+}

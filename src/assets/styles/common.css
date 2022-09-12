@@ -1,0 +1,45 @@
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-5 {
+    flex: 5;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.absolute {
+    position: absolute;
+}
+
+
+@media (max-width: 749px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 750px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.top-0 {
+    top: 0;
+}

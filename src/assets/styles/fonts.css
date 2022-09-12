@@ -1,0 +1,7 @@
+@font-face {
+  font-weight: 100 900;
+  font-family: Riforma;
+  font-style: normal;
+  src: url("../fonts/LL_riforma_medium.otf") format("opentype");
+  font-display: swap;
+}
