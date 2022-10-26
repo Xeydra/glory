@@ -33,13 +33,14 @@ export default {
             <a
               v-if="widget.externalLink"
               :href="widget.externalLink"
-              class="link"
+              target="_blank"
+              class="yellow-color link"
             >
               Read more ↗
             </a>
             <div
               v-if="widget.longText"
-              class="link clickable expandable"
+              class="pink-color link clickable"
               @click="expanded = !expanded"
             >
               Read {{ expanded ? 'less ↑' : 'more ↓' }}
@@ -95,13 +96,8 @@ export default {
 .link {
     font-size: 15px;
     line-height: 18px;
-    background-color: var(--yellow);
     vertical-align: middle;
     display: inline;
-}
-
-.expandable {
-    background-color: var(--pink);
 }
 
 .long-text {

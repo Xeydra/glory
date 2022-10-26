@@ -49,6 +49,20 @@ export const navigationPages = [
   },
 ];
 
+export const footerData = {
+  copyright: '©2022 Gloria Hohmeister',
+  links: [
+    {
+      title: 'Privacy Policy',
+      link: '',
+    },
+    {
+      title: 'Imprint',
+      link: '',
+    },
+  ],
+};
+
 export const COLLECTION_1 = {
   title: 'Time is a killer',
   widgets: [

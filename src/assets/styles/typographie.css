@@ -3,24 +3,19 @@ h2 {
     line-height: 18px;
 }
 
+
 h1 {
     font-size: 30px;
     line-height: 35px;
-}
-
-h1 {
     font-weight: 500;
 }
 
-h1.page-header {
-    font-weight: 500;
-    font-size: 182px;
-    line-height: 182px;
-    height: 140px;
-    text-align: center;
+.page-header {
+    font-size: 9vw;
     letter-spacing: -0.04em;
     text-transform: uppercase;
     margin: 0;
+    line-height: inherit;
 }
 
 h2 {
