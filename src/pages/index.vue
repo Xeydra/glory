@@ -1,7 +1,9 @@
 <script>
 import { title } from '@/TEMP_DATA/temp_data.js';
+import FitText from '@/composables/fitText.vue';
 
 export default {
+  components: { FitText },
   data() {
     return {
       title,
@@ -11,9 +13,9 @@ export default {
 </script>
 
 <template>
-  <h1 class="page-header">
+  <FitText class="page-header">
     {{ title }}
-  </h1>
+  </FitText>
 </template>
 
 <style>
