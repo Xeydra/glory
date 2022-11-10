@@ -20,7 +20,7 @@ export default {
       type: Number,
     },
     max: {
-      default: 50,
+      default: 40,
       type: Number,
     },
   },

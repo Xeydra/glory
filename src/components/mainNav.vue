@@ -16,7 +16,7 @@ export default {
     handleItemClick(navItem) {
       if (navItem.routing) {
         console.log(navItem.routing);
-        this.$router.push({ name: 'collection' });
+        this.$router.push({ name: navItem.routing });
         this.selected = null;
       } else {
         this.selected = navItem;
@@ -94,10 +94,15 @@ export default {
 
 <style scoped>
 
+.main-nav {
+  z-index: 100;
+}
+
 .side-nav {
   right: var(--default-gap-mobile);
   top: var(--default-gap-mobile);
   align-items: flex-end;
+  z-index: 200;
 }
 
 .main-nav-item span {

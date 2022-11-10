@@ -1,5 +1,6 @@
 <script setup>
 import MainNav from '@/components/mainNav.vue';
+import Footer from '@/components/footer.vue';
 </script>
 
 <template>
@@ -7,4 +8,5 @@ import MainNav from '@/components/mainNav.vue';
     <MainNav />
   </header>
   <router-view />
+  <Footer />
 </template>

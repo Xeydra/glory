@@ -3,7 +3,7 @@ export const title = 'Gloria Hohmeister';
 export const navigationPages = [
   {
     title,
-    routing: '',
+    routing: 'home',
   },
   {
     title: 'Collection',
@@ -41,7 +41,7 @@ export const navigationPages = [
   },
   {
     title: 'About',
-    routing: '',
+    routing: 'about',
   },
   {
     title: 'Contact',
@@ -141,3 +141,92 @@ export const COLLECTION_1 = {
     },
   ],
 };
+
+export const ABOUT_MENU = [
+  {
+    title: 'Education',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Location: Puebla, Mexico',
+        link: null,
+      },
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: null,
+      },
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: null,
+      },
+    ],
+  },
+  {
+    title: 'Internships',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: null,
+      },
+    ],
+  },
+  {
+    title: 'Editorials',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: null,
+      },
+    ],
+  },
+  {
+    title: 'Interviews',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: 'https://www.google.de',
+      },
+    ],
+  },
+  {
+    title: 'Exhibitions',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: 'https://www.google.de',
+      },
+    ],
+  },
+  {
+    title: 'Skills',
+    items: [
+      {
+        time_start: '10.2020',
+        time_end: '03.2022',
+        text: 'University of applied sciences Trier MA Fashion Design, Specialization Film and Knitwear Design',
+        extra: 'Puebla, Mexico',
+        link: 'https://www.google.de',
+      },
+    ],
+  },
+];
