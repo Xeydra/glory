@@ -1,10 +1,33 @@
-body {   
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
   font-family: Riforma;
+}
+
+#app {
   margin: var(--default-gap-mobile);
 }
 
 @media (min-width: 750px) {
-  body {
-      margin: var(--default-gap-desktop);
+  #app {
+    margin: var(--default-gap-desktop);
   }
+}
+
+#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
 }

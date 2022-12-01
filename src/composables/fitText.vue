@@ -36,19 +36,20 @@ export default {
   methods: {
     calculate() {
       const element = this.$el;
-
-      // keep trying until it fits
-      let fontSize = this.max;
-      const stepSize = (this.unit === 'px') ? 1 : 0.05;
-      element.style.fontSize = fontSize + this.unit;
-
-      while (element.getClientRects().length > this.targetLineCount && fontSize > this.min) {
-        fontSize -= stepSize;
+      if (element) {
+        // keep trying until it fits
+        let fontSize = this.max;
+        const stepSize = (this.unit === 'px') ? 1 : 0.05;
         element.style.fontSize = fontSize + this.unit;
-      }
 
-      // for a bit of extra space
-      element.style.fontSize = (fontSize - 2 * stepSize) + this.unit;
+        while (element.getClientRects().length > this.targetLineCount && fontSize > this.min) {
+          fontSize -= stepSize;
+          element.style.fontSize = fontSize + this.unit;
+        }
+
+        // for a bit of extra space
+        element.style.fontSize = (fontSize - 2 * stepSize) + this.unit;
+      }
     },
   },
 };
