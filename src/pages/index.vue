@@ -103,7 +103,7 @@ export default {
           :key="img.id"
           :ref="('container-' + coll.id)"
           :src="('http://localhost:1337' + img.image.data.attributes.url)"
-          :class="'img-' + img.format_size"
+          :class="['img-' + img.format_size, 'postit']"
         >
       </div>
     </div>

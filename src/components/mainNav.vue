@@ -17,15 +17,18 @@ export default {
       if (navItem.routing) {
         console.log(navItem.routing);
         this.$router.push({ name: navItem.routing });
-        this.selected = null;
+        this.handleClose();
       } else {
         this.selected = navItem;
+        this.$emit('selected', true);
       }
     },
     handleClose() {
       this.selected = null;
+        this.$emit('selected', false);
     },
   },
+  emits: ['selected'],
 };
 
 </script>
@@ -108,6 +111,7 @@ export default {
 .main-nav-item span {
   font-size: 30px;
   line-height: 35px;
+  font-weight: 700;
 }
 
 .side-nav-item span {
