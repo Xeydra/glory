@@ -8,7 +8,7 @@ export default {
     return {
       title: null,
       collections: null,
-      topImage: null,
+      topZIndex: 0,
     };
   },
   async mounted() {
@@ -80,9 +80,8 @@ export default {
     },
     handleImgHover(img) {
       img.addEventListener('mouseenter', () => {
-        if (this.topImage) this.topImage.style.zIndex = 0;
-        img.style.zIndex = 1;
-        this.topImage = img;
+        this.topZIndex += 1;
+        img.style.zIndex = this.topZIndex;
       })
     },
   },
