@@ -8,20 +8,28 @@ export default {
     return {
       title: null,
       collections: null,
+      topImage: null,
     };
   },
-  mounted() {
-    // http://localhost:1337/api/collections/1?populate[text_block][populate]=*&populate[video]=*&populate[image_slider][populate]=*
-    axios.get('http://localhost:1337/api/homepage?populate[collection][populate][image][populate]=*').then((response) => {
+  async mounted() {
+    axios.get('http://localhost:1337/api/homepage?populate[collection][populate][image][populate]=*').then(async (response) => {
       const attr = response.data.data.attributes;
-      console.log(response.data.data.attributes);
       this.title = attr.title;
       this.collections = attr.collection;
 
-      console.log(this.collections);
-      // this.images = attr.images_auto_size.data;
       this.drag();
+      await this.$nextTick();
+
+      this.$refs.containers.forEach((container) => {
+        this.$refs[container.id].forEach((img) => {
+          this.randomizePlacement(container, img);
+          this.handleImgHover(img);
+          img.ondragstart = function() { return false; };
+        })
+      });
     });
+
+
   },
   methods: {
     drag() {
@@ -66,6 +74,17 @@ export default {
 
       document.addEventListener('mousedown', mouseDownHandler);
     },
+    randomizePlacement(parent, img) {
+      img.style.top = Math.random() * (parent.clientHeight - img.clientHeight) + 'px';
+      img.style.left = Math.random() * (parent.clientWidth - img.clientWidth) + 'px';
+    },
+    handleImgHover(img) {
+      img.addEventListener('mouseenter', () => {
+        if (this.topImage) this.topImage.style.zIndex = 0;
+        img.style.zIndex = 1;
+        this.topImage = img;
+      })
+    },
   },
 };
 </script>
@@ -75,31 +94,19 @@ export default {
     <div class="canvas draggable">
       <div
         v-for="coll in collections"
+        :id="('container-' + coll.id)"
         :key="coll.id"
+        ref="containers"
         class="coll"
       >
         <img
           v-for="img in coll.image"
           :key="img.id"
+          :ref="('container-' + coll.id)"
           :src="('http://localhost:1337' + img.image.data.attributes.url)"
           :class="'img-' + img.format_size"
         >
       </div>
-      <!-- <div class="a1 grid-c"></div>
-      <div class="a2 grid-c"></div>
-      <div class="a3 grid-c"></div>
-      <div class="a4 grid-c"></div>
-      <div class="a5 grid-c"></div>
-      <div class="a6 grid-c"></div>
-      <div class="a7 grid-c"></div>
-      <div class="a8 grid-c"></div>
-      <div class="a9 grid-c"></div> -->
-      <!-- middle
-      <img
-        v-for="img in images"
-        :key="img.id"
-        :src="('http://localhost:1337' + img.attributes.url)"
-      > -->
     </div>
   </div>
   <!-- <FitText class="page-header">
@@ -108,47 +115,26 @@ export default {
 </template>
 
 <style>
-.img-small {
-  max-width: 50px;
+
+img {
+  position: absolute;
 }
 
-.img-medium {
+.img-small {
   max-width: 100px;
 }
 
+.img-medium {
+  max-width: 250px;
+}
+
 .img-large {
-  max-width: 200px;
-}
-.a1 {
-  background-color: blue;
-}
-.a2 {
-  background-color: yellow;
-}
-.a3 {
-  background-color: green;
-}
-.a4 {
-  background-color: rebeccapurple;
-}
-.a5 {
-  background-color: orchid;
-}
-.a6 {
-  background-color: lightcoral;
-}
-.a7 {
-  background-color: mediumseagreen;
-}
-.a8 {
-  background-color: peru;
-}
-.a9 {
-  background-color: red;
+  max-width: 500px;
 }
 
 .coll {
-  border: peru;
+  position: relative;
+  border: peru 1px solid;
 }
 
 .homepage-container {
