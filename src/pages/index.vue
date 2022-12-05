@@ -98,13 +98,17 @@ export default {
         ref="containers"
         class="coll"
       >
-        <img
+        <div
           v-for="img in coll.image"
           :key="img.id"
           :ref="('container-' + coll.id)"
-          :src="('http://localhost:1337' + img.image.data.attributes.url)"
-          :class="['img-' + img.format_size, 'postit']"
+          class="postit"
         >
+          <img
+            :src="('http://localhost:1337' + img.image.data.attributes.url)"
+            :class="'img-' + img.format_size"
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -113,9 +117,8 @@ export default {
   </FitText> -->
 </template>
 
-<style>
-
-img {
+<style scoped>
+.postit {
   position: absolute;
 }
 

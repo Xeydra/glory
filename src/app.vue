@@ -32,7 +32,11 @@ export default {
 </template>
 
 <style>
-.isNavOpen .postit {
+.navOpen .postit {
+  background-color: var(--yellow);
+}
 
+.navOpen .postit img {
+  opacity: 0;
 }
 </style>
