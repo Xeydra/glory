@@ -1,39 +1,44 @@
 <script>
 // import { COLLECTION_1 } from '@/TEMP_DATA/temp_data.js';
 import WidgetGroup from '@/components/widgetGroup.vue';
-import FitText from '@/composables/fitText.vue';
+// import FitText from '@/composables/fitText.vue';
+import { getOneCollectionURL } from '@/config';
+import axios from 'axios';
 
 export default {
   components: {
     WidgetGroup,
-    FitText,
+    // FitText,
   },
   data() {
     return {
-      selected: null,
+      title: null,
+      widgets: null,
     };
   },
   methods: {
   },
   mounted() {
-    console.log('hallo');
-    // axios.get(API_URL + 'navigation/render/1?type=TREE').then((response) => {
-    //   this.nav = response.data;
-    // });
+    axios.get(getOneCollectionURL(this.$route.meta.id)).then((response) => {
+      this.title = response.data.data.attributes.title;
+      this.widgets = response.data.data.attributes.widgets;
+    });
   }
 };
 </script>
 
 <template>
-  <FitText class="page-header">
-    {{ selected?.title }}
-  </FitText>
-  <template
-    v-for="widget in selected?.widgets"
-    :key="widget?.title"
-  >
-    <WidgetGroup :widget="widget" />
-  </template>
+  <div>
+    <div class="page-header">
+      {{ title }}
+    </div>
+    <template
+      v-for="widget in widgets"
+      :key="widget?.id"
+    >
+      <WidgetGroup :widget="widget" />
+    </template>
+  </div>
 </template>
 
 <style scoped>

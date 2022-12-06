@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import { API_URL } from '@/config';
+import { HOMEPAGE_URL } from '@/config';
 // import FitText from '@/composables/fitText.vue';
 
 export default {
@@ -13,7 +13,7 @@ export default {
     };
   },
   async mounted() {
-    axios.get(API_URL + 'homepage?populate[collection][populate][image][populate]=*').then(async (response) => {
+    axios.get(HOMEPAGE_URL).then(async (response) => {
       const attr = response.data.data.attributes;
       this.title = attr.title;
       this.collections = attr.collection;

@@ -2,14 +2,14 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import '@/assets/styles/index.css';
 import App from '@/app.vue';
-import { API_URL, COMP_TYPES } from '@/config';
+import { NAVIGATION_URL, COMP_TYPES } from '@/config';
 import axios from 'axios';
 import { addToStore } from '@/assets/store';
 
 const routes = [];
 const app = createApp(App);
 
-getDynamicRoutes(API_URL + 'navigation/render/1?type=TREE');
+getDynamicRoutes(NAVIGATION_URL);
 
 function getDynamicRoutes(url) {
   axios
