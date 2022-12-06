@@ -5,14 +5,17 @@ import NotFound from '@/pages/not-found.vue';
 
 export const routes = [
   {
-    path: '/',
+    path: '/home',
     component: Index,
     name: 'home',
   },
   {
-    path: '/collection',
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/collections/:id',
     component: Collection,
-    name: 'collection',
   },
   {
     path: '/about',

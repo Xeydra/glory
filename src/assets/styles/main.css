@@ -26,8 +26,3 @@ body {
   flex-direction: column;
   max-width: 100vw;
 }
-
-.main-content {
-  flex: 1;
-  display: flex;
-}

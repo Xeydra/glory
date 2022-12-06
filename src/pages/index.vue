@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { API_URL } from '@/config';
 // import FitText from '@/composables/fitText.vue';
 
 export default {
@@ -12,7 +13,7 @@ export default {
     };
   },
   async mounted() {
-    axios.get('http://localhost:1337/api/homepage?populate[collection][populate][image][populate]=*').then(async (response) => {
+    axios.get(API_URL + 'homepage?populate[collection][populate][image][populate]=*').then(async (response) => {
       const attr = response.data.data.attributes;
       this.title = attr.title;
       this.collections = attr.collection;
@@ -89,6 +90,11 @@ export default {
 </script>
 
 <template>
+  <div class="header absolute">
+    <FitText class="page-header">
+      {{ title }}
+    </FitText>
+  </div>
   <div class="homepage-container drag-surface">
     <div class="canvas draggable">
       <div
@@ -112,12 +118,14 @@ export default {
       </div>
     </div>
   </div>
-  <!-- <FitText class="page-header">
-    {{ title }}
-  </FitText> -->
 </template>
 
 <style scoped>
+
+.header {
+  width: 100%;
+  z-index: 9000;
+}
 .postit {
   position: absolute;
 }
@@ -136,7 +144,6 @@ export default {
 
 .coll {
   position: relative;
-  border: peru 1px solid;
 }
 
 .homepage-container {
@@ -161,7 +168,5 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-
-  border: solid red 1px;
 }
 </style>

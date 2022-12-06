@@ -21,10 +21,7 @@ export default {
 </script>
 
 <template>
-  <header>
-    <MainNav @selected="onSelected"/>
-    <div>{{ isNavOpen }}</div>
-  </header>
+  <MainNav @selected="onSelected"/>
   <div :class="['main-content', { 'navOpen': isNavOpen }]">
     <router-view />
   </div>
@@ -38,5 +35,11 @@ export default {
 
 .navOpen .postit img {
   opacity: 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  position: relative;
 }
 </style>

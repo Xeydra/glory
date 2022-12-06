@@ -1,6 +1,7 @@
 <script>
-import { navigationPages } from '@/TEMP_DATA/temp_data.js';
+import axios from 'axios';
 import IconClose from '@/assets/svg/iconClose.vue';
+import { API_URL } from '@/config';
 
 export default {
   components: {
@@ -8,27 +9,35 @@ export default {
   },
   data() {
     return {
-      nav: navigationPages,
+      nav: null,
       selected: null,
     };
   },
   methods: {
     handleItemClick(navItem) {
-      if (navItem.routing) {
-        console.log(navItem.routing);
-        this.$router.push({ name: navItem.routing });
+      if (navItem.type === 'INTERNAL') {
+        this.$router.push({ path: navItem.path });
         this.handleClose();
       } else {
-        this.selected = navItem;
-        this.$emit('selected', true);
+        if (this.selected === navItem) {
+          this.handleClose();
+        } else {
+          this.selected = navItem;
+          this.$emit('selected', true);
+        }
       }
     },
     handleClose() {
       this.selected = null;
-        this.$emit('selected', false);
+      this.$emit('selected', false);
     },
   },
   emits: ['selected'],
+  mounted() {
+    axios.get(API_URL + 'navigation/render/1?type=TREE').then((response) => {
+      this.nav = response.data;
+    });
+  }
 };
 
 </script>
@@ -36,7 +45,7 @@ export default {
 <template>
   <div class="flex-col absolute top-0 main-nav">
     <button
-      v-if="selected && selected.children?.length > 0"
+      v-if="selected && selected.items?.length > 0"
       class="icon-button close-desktop hide-desktop"
       @click="handleClose"
     >
@@ -56,11 +65,11 @@ export default {
         </span>
       </button>
       <div
-        v-if="selected && selected.title === main.title && (selected.children?.length > 0)"
+        v-if="selected && selected.title === main.title && (selected.items?.length > 0)"
         class="flex side-nav hide-desktop"
       >
         <button
-          v-for="sub in selected.children"
+          v-for="sub in selected.items"
           :key="sub.title"
           class="side-nav-item"
           @click="handleItemClick(sub)"
@@ -73,7 +82,7 @@ export default {
     </template>
   </div>
   <div
-    v-if="selected && (selected.children?.length > 0)"
+    v-if="selected && (selected.items?.length > 0)"
     class="flex-col absolute top-0 side-nav hide-mobile"
   >
     <button
@@ -83,7 +92,7 @@ export default {
       <IconClose />
     </button>
     <button
-      v-for="sub in selected.children"
+      v-for="sub in selected.items"
       :key="sub.title"
       class="side-nav-item"
       @click="handleItemClick(sub)"
@@ -98,14 +107,14 @@ export default {
 <style scoped>
 
 .main-nav {
-  z-index: 100;
+  z-index: 9990;
 }
 
 .side-nav {
   right: var(--default-gap-mobile);
   top: var(--default-gap-mobile);
   align-items: flex-end;
-  z-index: 200;
+  z-index: 9999;
 }
 
 .main-nav-item span {
