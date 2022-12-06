@@ -9,20 +9,20 @@ export const routes = [
     component: Index,
     name: 'home',
   },
-  {
-    path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/collections/:id',
-    component: Collection,
-  },
-  {
-    path: '/about',
-    component: About,
-    name: 'about',
-  },
-  { path: '/:path(.*)', component: NotFound },
+  // {
+  //   path: '/',
+  //   redirect: '/home'
+  // },
+  // {
+  //   path: '/collections/:id',
+  //   component: Collection,
+  // },
+  // {
+  //   path: '/about',
+  //   component: About,
+  //   name: 'about',
+  // },
+  // { path: '/:path(.*)', component: NotFound },
 ];
 
 export default routes;

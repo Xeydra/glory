@@ -14,7 +14,6 @@ export default {
   methods: {
     onSelected (value) {
       this.isNavOpen = value;
-      console.log('isNavOpen', this.isNavOpen)
     }
   },
 };

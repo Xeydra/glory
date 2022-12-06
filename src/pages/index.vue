@@ -91,9 +91,9 @@ export default {
 
 <template>
   <div class="header absolute">
-    <FitText class="page-header">
+    <div class="page-header">
       {{ title }}
-    </FitText>
+    </div>
   </div>
   <div class="homepage-container drag-surface">
     <div class="canvas draggable">

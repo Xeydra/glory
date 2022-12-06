@@ -1,7 +1,6 @@
 <script>
-import axios from 'axios';
 import IconClose from '@/assets/svg/iconClose.vue';
-import { API_URL } from '@/config';
+import { getStore } from '@/assets/store';
 
 export default {
   components: {
@@ -9,13 +8,13 @@ export default {
   },
   data() {
     return {
-      nav: null,
+      nav: getStore().routes,
       selected: null,
     };
   },
   methods: {
     handleItemClick(navItem) {
-      if (navItem.type === 'INTERNAL') {
+      if (!(navItem.items?.length > 1)) {
         this.$router.push({ path: navItem.path });
         this.handleClose();
       } else {
@@ -33,11 +32,6 @@ export default {
     },
   },
   emits: ['selected'],
-  mounted() {
-    axios.get(API_URL + 'navigation/render/1?type=TREE').then((response) => {
-      this.nav = response.data;
-    });
-  }
 };
 
 </script>
