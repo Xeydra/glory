@@ -3,27 +3,33 @@ export default {
   data() {
     return {
       expanded: false,
+      texts: [this.text_block],
     };
   },
   props: {
     text_block: {
-      type: Object,
+      type: Array,
       required: true,
     },
-    expandable: {
-      type: Boolean,
-      default: false,
+    expandable_texts: {
+      type: Object,
     },
-    isSecond: {
-      type: Boolean,
-      default: false,
+    details: {
+      type: Object,
     },
   },
   emits: ["toggle"],
   methods: {
     toggleExpand() {
       this.expanded = !this.expanded;
-      this.$emit("toggle", this.expanded);
+
+      if (this.expanded) {
+        this.texts.push(...this.expandable_texts);
+      } else {
+        this.texts = [this.text_block];
+      }
+
+      console.log(this.texts);
     },
   },
 };
@@ -31,33 +37,44 @@ export default {
 
 <template>
   <div
+    v-for="(block, index) in texts"
+    :key="block.id"
     class="text-container"
-    :class="['text-container', { expanded: isSecond }]"
+    :class="['text-container', { first: index === 0 }]"
   >
     <div class="text-header flex-3">
       <h2 class="title">
-        {{ text_block.title }}
+        {{ block.title }}
       </h2>
     </div>
     <div class="text-body flex-5">
       <h2 class="short-text">
-        {{ text_block.description }}
+        {{ block.description }}
         <a
-          v-if="text_block.external_link"
-          :href="text_block.external_link"
+          v-if="block.external_link && index === 0"
+          :href="block.external_link"
           target="_blank"
           class="yellow-color link"
         >
           Read more ↗
         </a>
         <div
-          v-if="expandable"
+          v-if="expandable_texts.length > 0 && index === 0"
           class="pink-color link clickable"
           @click="toggleExpand"
         >
           Read {{ expanded ? "less ↑" : "more ↓" }}
         </div>
       </h2>
+      <template v-if="index === texts.length - 1">
+        <div
+          v-for="(info, index) in details"
+          :key="index"
+          class="additional-infos info"
+        >
+          {{ info.detail }}
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -69,7 +86,7 @@ export default {
   margin-bottom: -7px;
 }
 
-.expanded {
+.text-container:not(.first) {
   margin-top: 44px;
 }
 
@@ -77,6 +94,7 @@ export default {
   padding-bottom: 6px;
 }
 
+/* TODO: homepage has lots of high z-indexes, need to go high here as well */
 .text-body {
   z-index: 1;
 }
@@ -86,9 +104,5 @@ export default {
   line-height: 18px;
   vertical-align: middle;
   display: inline;
-}
-
-.long-text {
-  margin-top: 41px;
 }
 </style>

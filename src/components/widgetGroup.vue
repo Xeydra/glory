@@ -31,21 +31,9 @@ export default {
   <div class="widget-container">
     <TextBlock
       :text_block="widget.short_text"
-      :expandable="!!widget.extended_text"
-      @toggle="onToggle"
+      :expandable_texts="widget.extended_texts"
+      :details="widget.detail_list"
     ></TextBlock>
-    <TextBlock
-      v-if="expanded && widget.extended_text"
-      :text_block="widget.extended_text"
-      :isSecond="true"
-    ></TextBlock>
-    <div
-      v-for="(info, index) in widget.detail_list"
-      :key="index"
-      class="additional-infos info"
-    >
-      {{ info.detail }}
-    </div>
     <div>
       <!-- TODO: Bilder Größen aus Daten, Expandable mit Subtitle -->
       <Slider v-if="widget.mediaType === 'slider'" :pictures="widget.media" />

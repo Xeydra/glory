@@ -6,7 +6,10 @@ import { NAVIGATION_URL, COMP_TYPES } from '@/config';
 import axios from 'axios';
 import { addToStore } from '@/assets/store';
 
-const routes = [];
+const routes = [{
+  path: '',
+  redirect: '/home'
+}];
 const app = createApp(App);
 
 getDynamicRoutes(NAVIGATION_URL);

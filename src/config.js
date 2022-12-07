@@ -14,7 +14,7 @@ export function getOneCollectionURL(id) {
     '&populate[widgets][populate][media_video]=*' +
     '&populate[widgets][populate][short_text]=*' +
     '&populate[widgets][populate][detail_list]=*' +
-    '&populate[widgets][populate][extended_text]=*';
+    '&populate[widgets][populate][extended_texts]=*';
 }
 
 export var COMP_TYPES = [
