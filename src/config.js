@@ -1,9 +1,9 @@
 import Index from '@/pages/index.vue';
 import Collection from '@/pages/collection.vue';
 
-export var BASE_URL = 'http://localhost:1337/';
+export var BASE_URL = 'http://localhost:1337';
 
-export var API_URL = BASE_URL + 'api/';
+export var API_URL = BASE_URL + '/api/';
 
 export var COLLECTION_URL = API_URL + 'collections/';
 export var NAVIGATION_URL = API_URL + 'navigation/render/1?type=TREE';

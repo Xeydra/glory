@@ -8,14 +8,14 @@ export default {
   },
   props: {
     text_block: {
-      type: Array,
+      type: Object,
       required: true,
     },
     expandable_texts: {
-      type: Object,
+      type: Array,
     },
     details: {
-      type: Object,
+      type: Array,
     },
   },
   emits: ["toggle"],
@@ -28,8 +28,6 @@ export default {
       } else {
         this.texts = [this.text_block];
       }
-
-      console.log(this.texts);
     },
   },
 };
@@ -72,7 +70,9 @@ export default {
           :key="index"
           class="additional-infos info"
         >
-          {{ info.detail }}
+          <span>
+            {{ info.detail }}
+          </span>
         </div>
       </template>
     </div>

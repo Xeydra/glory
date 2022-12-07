@@ -36,7 +36,10 @@ export default {
     ></TextBlock>
     <div>
       <!-- TODO: Bilder Größen aus Daten, Expandable mit Subtitle -->
-      <Slider v-if="widget.mediaType === 'slider'" :pictures="widget.media" />
+      <Slider
+        v-if="widget.media_img_slider?.length > 0"
+        :pictures="widget.media_img_slider"
+      />
     </div>
   </div>
 </template>
