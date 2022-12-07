@@ -57,7 +57,11 @@ export default {
     </div>
 
     <div class="img-container" ref="slider">
-      <div v-for="item of pictures" :key="item.id" class="picture-container">
+      <div
+        v-for="item of pictures"
+        :key="item.id"
+        class="picture-container postit"
+      >
         <!-- <div class="pic img-disabled" /> -->
         <img
           :src="baseUrl + item.file.data.attributes.url"
@@ -67,7 +71,7 @@ export default {
           }"
         />
         <div class="caption">
-          <span>
+          <span class="postit">
             {{ item.description }}
           </span>
         </div>

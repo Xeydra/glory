@@ -1,5 +1,5 @@
 <script>
-import MainNav from '@/components/mainNav.vue';
+import MainNav from "@/components/mainNav.vue";
 // import Footer from '@/components/footer.vue';
 
 export default {
@@ -12,16 +12,16 @@ export default {
     };
   },
   methods: {
-    onSelected (value) {
+    onSelected(value) {
       this.isNavOpen = value;
-    }
+    },
   },
 };
 </script>
 
 <template>
-  <MainNav @selected="onSelected"/>
-  <div :class="['main-content', { 'navOpen': isNavOpen }]">
+  <MainNav @selected="onSelected" />
+  <div :class="['main-content', { navOpen: isNavOpen }]">
     <router-view />
   </div>
   <!-- <Footer /> -->
@@ -30,6 +30,7 @@ export default {
 <style>
 .navOpen .postit {
   background-color: var(--yellow);
+  color: var(--yellow);
 }
 
 .navOpen .postit img {

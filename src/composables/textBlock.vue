@@ -41,24 +41,24 @@ export default {
     :class="['text-container', { first: index === 0 }]"
   >
     <div class="text-header flex-3">
-      <h2 class="title">
+      <h2 class="title postit">
         {{ block.title }}
       </h2>
     </div>
     <div class="text-body flex-5">
-      <h2 class="short-text">
+      <h2 class="short-text postit">
         {{ block.description }}
         <a
           v-if="block.external_link && index === 0"
           :href="block.external_link"
           target="_blank"
-          class="yellow-color link"
+          class="yellow-color link postit"
         >
           Read more ↗
         </a>
         <div
           v-if="expandable_texts.length > 0 && index === 0"
-          class="pink-color link clickable"
+          class="pink-color link clickable postit"
           @click="toggleExpand"
         >
           Read {{ expanded ? "less ↑" : "more ↓" }}
@@ -70,7 +70,7 @@ export default {
           :key="index"
           class="additional-infos info"
         >
-          <span>
+          <span class="postit">
             {{ info.detail }}
           </span>
         </div>
