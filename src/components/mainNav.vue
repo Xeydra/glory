@@ -1,6 +1,6 @@
 <script>
-import IconClose from '@/assets/svg/iconClose.vue';
-import { getStore } from '@/assets/store';
+import IconClose from "@/assets/svg/iconClose.vue";
+import { getStore } from "@/assets/store";
 
 export default {
   components: {
@@ -9,64 +9,75 @@ export default {
   data() {
     return {
       nav: getStore().routes,
-      selected: null,
+      selectedMain: null,
+      selectedSub: null,
     };
   },
   methods: {
-    handleItemClick(navItem) {
+    handleMainClick(navItem) {
       if (!(navItem.items?.length > 1)) {
+        this.selectedMain = navItem;
         this.$router.push({ path: navItem.path });
-        this.handleClose();
       } else {
-        if (this.selected === navItem) {
+        if (this.selectedMain === navItem) {
           this.handleClose();
         } else {
-          this.selected = navItem;
-          this.$emit('selected', true);
+          this.selectedMain = navItem;
+          this.$emit("selected", true);
         }
       }
     },
+    handleSubClick(subItem) {
+      this.selectedSub = subItem;
+      this.$router.push({ path: subItem.path });
+      if (!this.selectedMain.permashow_subnav) {
+        this.handleClose();
+      }
+    },
     handleClose() {
-      this.selected = null;
-      this.$emit('selected', false);
+      this.selectedMain = null;
+      this.$emit("selected", false);
     },
   },
-  emits: ['selected'],
+  emits: ["selected"],
 };
-
 </script>
 
 <template>
   <div class="flex-col absolute top-0 main-nav">
     <button
-      v-if="selected && selected.items?.length > 0"
+      v-if="selectedMain && selectedMain.items?.length > 0"
       class="icon-button close-desktop hide-desktop"
       @click="handleClose"
     >
       <IconClose />
     </button>
-    <template
-      v-for="main in nav"
-      :key="main.title"
-    >
+    <template v-for="main in nav" :key="main.title">
       <button
         class="main-nav-item"
-        :class="{ active: main.title === selected?.title }"
-        @click="handleItemClick(main)"
+        :class="{ active: main.title === selectedMain?.title }"
+        @click="handleMainClick(main)"
       >
         <span>
           {{ main.title }}
         </span>
       </button>
       <div
-        v-if="selected && selected.title === main.title && (selected.items?.length > 0)"
+        v-if="
+          selectedMain &&
+          selectedMain.title === main.title &&
+          selectedMain.items?.length > 0
+        "
         class="flex side-nav hide-desktop"
       >
         <button
-          v-for="sub in selected.items"
+          v-for="sub in selectedMain.items"
           :key="sub.title"
-          class="side-nav-item"
-          @click="handleItemClick(sub)"
+          :class="{
+            active: sub.title === selectedSub?.title,
+            'side-nav-item': true,
+          }"
+          @click="handleSubClick(sub)"
         >
           <span>
             {{ sub.title }}
@@ -76,20 +87,24 @@ export default {
     </template>
   </div>
   <div
-    v-if="selected && (selected.items?.length > 0)"
+    v-if="selectedMain && selectedMain.items?.length > 0"
     class="flex-col absolute top-0 side-nav hide-mobile"
   >
     <button
+      v-if="!selectedMain.permashow_subnav"
       class="side-nav-item"
       @click="handleClose"
     >
       <IconClose />
     </button>
     <button
-      v-for="sub in selected.items"
+      v-for="sub in selectedMain.items"
       :key="sub.title"
-      class="side-nav-item"
-      @click="handleItemClick(sub)"
+      :class="{
+        active: sub.title === selectedSub?.title,
+        'side-nav-item': true,
+      }"
+      @click="handleSubClick(sub)"
     >
       <span>
         {{ sub.title }}
@@ -99,7 +114,6 @@ export default {
 </template>
 
 <style scoped>
-
 .main-nav {
   z-index: 9990;
 }
@@ -124,34 +138,34 @@ export default {
 }
 
 @media (min-width: 750px) {
-    .main-nav {
-      flex-direction: row;
-      gap: var(--default-gap-desktop);
-    }
+  .main-nav {
+    flex-direction: row;
+    gap: var(--default-gap-desktop);
+  }
 
-    .side-nav {
-      right: var(--default-gap-desktop);
-      top: var(--default-gap-desktop);
-    }
+  .side-nav {
+    right: var(--default-gap-desktop);
+    top: var(--default-gap-desktop);
+  }
 
-    .main-nav {
-      display: inline-flex;
-    }
+  .main-nav {
+    display: inline-flex;
+  }
 
-    .main-nav-item span {
-      font-size: 15px;
-      line-height: 18px;
-    }
+  .main-nav-item span {
+    font-size: 15px;
+    line-height: 18px;
+  }
 
-    .side-nav-item span {
-      font-size: 30px;
-      line-height: 35px;
-    }
+  .side-nav-item span {
+    font-size: 30px;
+    line-height: 35px;
+  }
 }
 
 @media (max-width: 749px) {
   .main-nav {
-    width: calc(100% - (var(--default-gap-mobile)*2))
+    width: calc(100% - (var(--default-gap-mobile) * 2));
   }
 
   .close-desktop {

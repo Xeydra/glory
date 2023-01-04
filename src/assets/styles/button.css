@@ -1,23 +1,32 @@
 button {
-    height: 42px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    padding: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }
 
 button.icon-button {
-    height: unset;
+  height: unset;
 }
 
-button > * {
-    background-color: white;
+button>* {
+  background-color: white;
 }
-button:hover > * {
-    background-color: var(--pink);
+
+button:hover>* {
+  background-color: var(--pink);
 }
-button.active > * {
-    background-color: var(--pink);
+
+button.active>* {
+  background-color: var(--pink);
+}
+
+.link-button {
+  font-size: 15px;
+  line-height: 18px;
+  vertical-align: middle;
+  display: inline;
 }

@@ -47,6 +47,7 @@ function createAndAppendRoute(apiRoute) {
         title: apiRoute.title,
         id: apiRoute.related.id
       }
+
     }
     routes.push(newRoute);
   }

@@ -37,7 +37,6 @@ export default {
   <div
     v-for="(block, index) in texts"
     :key="block.id"
-    class="text-container"
     :class="['text-container', { first: index === 0 }]"
   >
     <div class="text-header flex-3">
@@ -46,30 +45,26 @@ export default {
       </h2>
     </div>
     <div class="text-body flex-5">
-      <h2 class="short-text postit">
+      <h2 class="postit">
         {{ block.description }}
         <a
           v-if="block.external_link && index === 0"
           :href="block.external_link"
           target="_blank"
-          class="yellow-color link postit"
+          class="yellow-color link-button postit"
         >
           Read more ↗
         </a>
         <div
           v-if="expandable_texts.length > 0 && index === 0"
-          class="pink-color link clickable postit"
+          class="pink-color link-button clickable postit"
           @click="toggleExpand"
         >
           Read {{ expanded ? "less ↑" : "more ↓" }}
         </div>
       </h2>
       <template v-if="index === texts.length - 1">
-        <div
-          v-for="(info, index) in details"
-          :key="index"
-          class="additional-infos info"
-        >
+        <div v-for="(info, index) in details" :key="index" class="info">
           <span class="postit">
             {{ info.detail }}
           </span>
@@ -97,12 +92,5 @@ export default {
 /* TODO: homepage has lots of high z-indexes, need to go high here as well */
 .text-body {
   z-index: 1;
-}
-
-.link {
-  font-size: 15px;
-  line-height: 18px;
-  vertical-align: middle;
-  display: inline;
 }
 </style>

@@ -1,10 +1,11 @@
 <script>
 import MainNav from "@/components/mainNav.vue";
-// import Footer from '@/components/footer.vue';
+import Footer from "@/components/footer.vue";
 
 export default {
   components: {
     MainNav,
+    Footer,
   },
   data() {
     return {
@@ -24,7 +25,7 @@ export default {
   <div :class="['main-content', { navOpen: isNavOpen }]">
     <router-view />
   </div>
-  <!-- <Footer /> -->
+  <Footer />
 </template>
 
 <style>

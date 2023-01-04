@@ -26,7 +26,6 @@ export default {
 };
 </script>
 
-// TODO: method for expanding
 <template>
   <div class="widget-container">
     <TextBlock
@@ -35,7 +34,6 @@ export default {
       :details="widget.detail_list"
     ></TextBlock>
     <div>
-      <!-- TODO: Bilder Größen aus Daten, Expandable mit Subtitle -->
       <Slider
         v-if="widget.media_img_slider?.length > 0"
         :pictures="widget.media_img_slider"
