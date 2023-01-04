@@ -11,17 +11,20 @@ export default {
       nav: getStore().routes,
       selectedMain: null,
       selectedSub: null,
+      isOpen: false,
     };
   },
   methods: {
     handleMainClick(navItem) {
+      console.log("isOpen", this.isOpen);
       if (!(navItem.items?.length > 1)) {
         this.selectedMain = navItem;
         this.$router.push({ path: navItem.path });
       } else {
-        if (this.selectedMain === navItem) {
+        if (this.isOpen && !this.selectedMain.permashow_subnav) {
           this.handleClose();
         } else {
+          this.isOpen = true;
           this.selectedMain = navItem;
           this.$emit("selected", true);
         }
@@ -35,11 +38,27 @@ export default {
       }
     },
     handleClose() {
-      this.selectedMain = null;
+      this.isOpen = false;
       this.$emit("selected", false);
     },
   },
   emits: ["selected"],
+  mounted() {
+    const unwatch = this.$watch("$route", (route) => {
+      if (route.fullPath) {
+        const path = route.fullPath;
+        this.selectedMain = this.nav.find((main) => {
+          return path.startsWith(main.path);
+        });
+        this.selectedSub = this.selectedMain.items.find((sub) =>
+          path.startsWith(sub.path)
+        );
+        if (this.selectedMain.permashow_subnav) this.isOpen = true;
+        unwatch();
+      }
+    });
+    //
+  },
 };
 </script>
 
@@ -62,14 +81,7 @@ export default {
           {{ main.title }}
         </span>
       </button>
-      <div
-        v-if="
-          selectedMain &&
-          selectedMain.title === main.title &&
-          selectedMain.items?.length > 0
-        "
-        class="flex side-nav hide-desktop"
-      >
+      <div v-if="isOpen" class="flex side-nav hide-desktop">
         <button
           v-for="sub in selectedMain.items"
           :key="sub.title"
@@ -86,12 +98,9 @@ export default {
       </div>
     </template>
   </div>
-  <div
-    v-if="selectedMain && selectedMain.items?.length > 0"
-    class="flex-col absolute top-0 side-nav hide-mobile"
-  >
+  <div v-if="isOpen" class="flex-col absolute top-0 side-nav hide-mobile">
     <button
-      v-if="!selectedMain.permashow_subnav"
+      v-if="!selectedMain.permashow_subnav && selectedMain.items?.length > 0"
       class="side-nav-item"
       @click="handleClose"
     >

@@ -16,7 +16,7 @@ export default {
     };
   },
   mounted() {
-    console.log("widget", this.widget);
+    // console.log("widget", this.widget);
   },
   methods: {
     onToggle(toggle) {

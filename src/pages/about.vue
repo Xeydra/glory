@@ -14,7 +14,6 @@ export default {
   },
   watch: {
     $route() {
-      console.log("routechange");
       this.updateView();
     },
   },
@@ -36,10 +35,10 @@ export default {
       :class="['text-container', { first: index === 0 }]"
     >
       <div class="dates">
-        <span>
+        <h2>
           {{ item.from }}
-        </span>
-        <span v-if="item.to"> - {{ item.to }} </span>
+        </h2>
+        <h2 v-if="item.to">{{ " - " }} {{ item.to }}</h2>
       </div>
       <div class="text">
         <h2 class="">
