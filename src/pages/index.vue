@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { HOMEPAGE_URL } from "@/config";
+import { randomizePlacement } from "@/utils/functions";
 // import FitText from '@/composables/fitText.vue';
 
 export default {
@@ -23,7 +24,7 @@ export default {
 
       this.$refs.containers.forEach((container) => {
         this.$refs[container.id].forEach((img) => {
-          this.randomizePlacement(container, img);
+          randomizePlacement(container, img);
           this.handleImgHover(img);
           img.ondragstart = function () {
             return false;
@@ -77,12 +78,6 @@ export default {
       };
 
       document.addEventListener("mousedown", mouseDownHandler);
-    },
-    randomizePlacement(parent, img) {
-      img.style.top =
-        Math.random() * (parent.clientHeight - img.clientHeight) + "px";
-      img.style.left =
-        Math.random() * (parent.clientWidth - img.clientWidth) + "px";
     },
     handleImgHover(img) {
       img.addEventListener("mouseenter", () => {

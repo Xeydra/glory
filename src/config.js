@@ -12,7 +12,7 @@ export var NAVIGATION_URL = API_URL + 'navigation/render/1?type=TREE';
 export var HOMEPAGE_URL = API_URL + 'homepage?populate[collection][populate][image][populate]=*';
 export var FOOTER_URL = API_URL + 'footer/';
 export var ABOUT_URL = API_URL + 'about-pages/';
-export var CONTACT_URL = API_URL + 'contact/?populate[blocks][populate][details]=*';
+export var CONTACT_URL = API_URL + 'contact/?populate[blocks][populate][details]=*&populate[imgs]=*';
 
 export function getOneCollectionURL(id) {
   return COLLECTION_URL + id + '?populate[widgets][populate][media_img_slider][populate]=*' +
