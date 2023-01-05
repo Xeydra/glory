@@ -1,6 +1,6 @@
 <script>
-import axios from 'axios';
-import { HOMEPAGE_URL } from '@/config';
+import axios from "axios";
+import { HOMEPAGE_URL } from "@/config";
 // import FitText from '@/composables/fitText.vue';
 
 export default {
@@ -25,21 +25,24 @@ export default {
         this.$refs[container.id].forEach((img) => {
           this.randomizePlacement(container, img);
           this.handleImgHover(img);
-          img.ondragstart = function() { return false; };
-        })
+          img.ondragstart = function () {
+            return false;
+          };
+        });
       });
     });
-
-
   },
   methods: {
     drag() {
-      const element = document.querySelector('.drag-surface');
+      const element = document.querySelector(".drag-surface");
       element.scrollLeft = element.scrollWidth / 3;
       element.scrollTop = element.scrollHeight / 3;
 
       let positions = {
-        top: element.scrollTop, left: element.scrollLeft, x: 0, y: 0,
+        top: element.scrollTop,
+        left: element.scrollLeft,
+        x: 0,
+        y: 0,
       };
 
       const mouseMoveHandler = function (e) {
@@ -51,16 +54,16 @@ export default {
       };
 
       const mouseUpHandler = function () {
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
 
-        element.style.cursor = 'grab';
-        element.style.removeProperty('user-select');
+        element.style.cursor = "grab";
+        element.style.removeProperty("user-select");
       };
 
       const mouseDownHandler = function (e) {
-        element.style.cursor = 'grabbing';
-        element.style.userSelect = 'none';
+        element.style.cursor = "grabbing";
+        element.style.userSelect = "none";
 
         positions = {
           top: element.scrollTop,
@@ -69,21 +72,23 @@ export default {
           y: e.clientY,
         };
 
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
+        document.addEventListener("mousemove", mouseMoveHandler);
+        document.addEventListener("mouseup", mouseUpHandler);
       };
 
-      document.addEventListener('mousedown', mouseDownHandler);
+      document.addEventListener("mousedown", mouseDownHandler);
     },
     randomizePlacement(parent, img) {
-      img.style.top = Math.random() * (parent.clientHeight - img.clientHeight) + 'px';
-      img.style.left = Math.random() * (parent.clientWidth - img.clientWidth) + 'px';
+      img.style.top =
+        Math.random() * (parent.clientHeight - img.clientHeight) + "px";
+      img.style.left =
+        Math.random() * (parent.clientWidth - img.clientWidth) + "px";
     },
     handleImgHover(img) {
-      img.addEventListener('mouseenter', () => {
+      img.addEventListener("mouseenter", () => {
         this.topZIndex += 1;
         img.style.zIndex = this.topZIndex;
-      })
+      });
     },
   },
 };
@@ -91,7 +96,7 @@ export default {
 
 <template>
   <div class="header absolute">
-    <div class="page-header">
+    <div class="page-header postit">
       {{ title }}
     </div>
   </div>
@@ -99,7 +104,7 @@ export default {
     <div class="canvas draggable">
       <div
         v-for="coll in collections"
-        :id="('container-' + coll.id)"
+        :id="'container-' + coll.id"
         :key="coll.id"
         ref="containers"
         class="coll"
@@ -107,13 +112,13 @@ export default {
         <div
           v-for="img in coll.image"
           :key="img.id"
-          :ref="('container-' + coll.id)"
+          :ref="'container-' + coll.id"
           class="postit"
         >
           <img
-            :src="('http://localhost:1337' + img.image.data.attributes.url)"
+            :src="'http://localhost:1337' + img.image.data.attributes.url"
             :class="'img-' + img.format_size"
-          >
+          />
         </div>
       </div>
     </div>
@@ -121,7 +126,6 @@ export default {
 </template>
 
 <style scoped>
-
 .header {
   width: 100%;
   z-index: 9000;
