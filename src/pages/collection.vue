@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div class="collection-container">
-    <div class="page-header">
+    <div class="page-header postit">
       {{ title }}
     </div>
     <template v-for="widget in widgets" :key="widget?.id">

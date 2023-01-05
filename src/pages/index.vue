@@ -2,10 +2,8 @@
 import axios from "axios";
 import { HOMEPAGE_URL } from "@/config";
 import { randomizePlacement } from "@/utils/functions";
-// import FitText from '@/composables/fitText.vue';
 
 export default {
-  // components: { FitText },
   data() {
     return {
       title: null,
@@ -124,6 +122,7 @@ export default {
 .header {
   width: 100%;
   z-index: 9000;
+  user-select: none;
 }
 .postit {
   position: absolute;

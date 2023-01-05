@@ -47,10 +47,16 @@ export default {
       :key="block.id"
       :class="['block', { first: index === 0 }]"
     >
-      <h2 class="title">{{ block.title }}</h2>
+      <h2 class="title">
+        <span class="postit">
+          {{ block.title }}
+        </span>
+      </h2>
       <div class="contact-body">
         <h2 v-for="item in block.details" :key="item.id">
-          {{ item.textline }}
+          <span class="postit">
+            {{ item.textline }}
+          </span>
           <a
             v-if="item.external_link"
             :href="item.external_link"

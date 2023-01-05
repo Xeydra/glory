@@ -35,13 +35,13 @@ export default {
       :class="['text-container', { first: index === 0 }]"
     >
       <div class="dates">
-        <h2>
+        <h2 class="postit">
           {{ item.from }}
         </h2>
-        <h2 v-if="item.to">{{ " - " }} {{ item.to }}</h2>
+        <h2 v-if="item.to" class="postit">{{ " - " }} {{ item.to }}</h2>
       </div>
       <div class="text">
-        <h2 class="">
+        <h2 class="postit">
           {{ item.description }}
           <a
             v-if="item.external_link"
@@ -53,47 +53,18 @@ export default {
           </a>
         </h2>
         <div class="info">
-          <span class="">
+          <span class="postit">
             {{ item.location }}
           </span>
         </div>
       </div>
     </div>
-    <!-- <div class="about-nav">
-      <div
-        v-for="item in aboutMenu"
-        :key="item.title"
-        class="side-nav-item"
-        @click="handleNavClick(item)"
-      >
-        <span>
-          {{ item.title }}
-        </span>
-      </div>
-    </div> -->
-    <!-- <template v-for="item in aboutMenu.items" :key="item.time_start">
-      <div class="content">
-        <div class="time h1">
-          {{ item.time_start }}
-          <span v-if="item.time_end"> - {{ item.time_end }}</span>
-        </div>
-        <div class="item-content h1">
-          {{ item.text }}
-          <div v-if="item.extra" class="extra caption">
-            {{ item.extra }}
-          </div>
-        </div>
-      </div>
-    </template> -->
   </div>
 </template>
 
 <style scoped>
 .about-container {
   width: 100%;
-  /* display: grid; */
-  /* grid-template-columns: 3fr 3fr 2fr; */
-  /* grid-auto-flow: row; */
 }
 
 .about-nav {

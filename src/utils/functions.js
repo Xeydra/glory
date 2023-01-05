@@ -13,7 +13,7 @@ function getRandomValueWithin(parentValue, imgValue) {
   do {
     newValue = Math.random() * (parentValue - imgValue);
     count--;
-  } while ((newValue + imgValue) > parentValue && count > 0);
+  } while ((newValue + imgValue) > parentValue);
 
   return newValue;
 }
