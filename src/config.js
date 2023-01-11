@@ -2,6 +2,7 @@ import Index from '@/pages/index.vue';
 import Collection from '@/pages/collection.vue';
 import About from '@/pages/about.vue';
 import Contact from '@/pages/contact.vue';
+import Impressum from '@/pages/impressum.vue';
 
 export var BASE_URL = 'http://localhost:1337';
 
@@ -13,6 +14,7 @@ export var HOMEPAGE_URL = API_URL + 'homepage?populate[collection][populate][ima
 export var FOOTER_URL = API_URL + 'footer/';
 export var ABOUT_URL = API_URL + 'about-pages/';
 export var CONTACT_URL = API_URL + 'contact/?populate[blocks][populate][details]=*&populate[imgs]=*';
+export var IMPRESSUM_URL = API_URL + 'impressum/?populate[items][populate][details]=*&populate[imgs]=*';
 
 export function getOneCollectionURL(id) {
   return COLLECTION_URL + id + '?populate[widgets][populate][media_img_slider][populate]=*' +
@@ -31,4 +33,5 @@ export var COMP_TYPES = [
   { key: 'collection', component: Collection },
   { key: 'about-page', component: About },
   { key: 'contact', component: Contact },
+  { key: 'impressum', component: Impressum },
 ]

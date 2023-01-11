@@ -26,9 +26,8 @@ export default {
   <footer>
     <div class="imprint">
       <span>{{ footerData.copyright }}</span>
-      <!-- <a v-for="item in footerData.links" :key="item.title">
-        {{ footerData.copyright }}
-      </a> -->
+      <router-link :to="{ name: 'impressum' }">Impressum</router-link>
+      <router-link :to="{ name: 'policy' }">Privacy Policy</router-link>
     </div>
     <div class="clickable pink-color" @click="scrollToTop()">
       Scroll to top ↑

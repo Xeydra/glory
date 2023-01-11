@@ -5,11 +5,25 @@ import App from '@/app.vue';
 import { NAVIGATION_URL, COMP_TYPES } from '@/config';
 import axios from 'axios';
 import { addToStore } from '@/assets/store';
+import Impressum from '@/pages/impressum.vue';
+import PrivacyPolicy from '@/pages/privacyPolicy.vue';
 
-const routes = [{
-  path: '',
-  redirect: '/home'
-}];
+const routes = [
+  {
+    path: '',
+    redirect: '/home',
+  },
+  {
+    path: '/impressum',
+    component: Impressum,
+    name: 'impressum',
+  },
+  {
+    path: '/policy',
+    component: PrivacyPolicy,
+    name: 'policy',
+  }
+];
 const app = createApp(App);
 
 getDynamicRoutes(NAVIGATION_URL);
