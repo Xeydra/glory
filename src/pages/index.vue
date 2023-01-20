@@ -154,7 +154,9 @@ export default {
 
 @media (min-width: 750px) {
   .homepage-container {
-    max-height: calc(100vh - (2 * var(--default-gap-desktop)));
+    max-height: calc(
+      100vh - (2 * var(--default-gap-desktop)) - var(--footer-height)
+    );
   }
 }
 

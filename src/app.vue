@@ -13,7 +13,7 @@ export default {
     };
   },
   methods: {
-    onSelected(value) {
+    onNavOpen(value) {
       this.isNavOpen = value;
     },
   },
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <MainNav @selected="onSelected" />
+  <MainNav @navOpen="onNavOpen" />
   <div :class="['main-content', { navOpen: isNavOpen }]">
     <router-view />
   </div>

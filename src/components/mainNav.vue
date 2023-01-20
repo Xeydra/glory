@@ -26,7 +26,6 @@ export default {
         } else {
           this.isOpen = true;
           this.selectedMain = navItem;
-          this.$emit("selected", true);
         }
       }
     },
@@ -39,10 +38,14 @@ export default {
     },
     handleClose() {
       this.isOpen = false;
-      this.$emit("selected", false);
     },
   },
-  emits: ["selected"],
+  watch: {
+    isOpen(newV) {
+      this.$emit("navOpen", newV);
+    },
+  },
+  emits: ["navOpen"],
   mounted() {
     const unwatch = this.$watch("$route", (route) => {
       if (route.fullPath) {

@@ -1,6 +1,7 @@
 :root {
-    --pink: #FA68DA;
-    --yellow: #FFE897;
-    --default-gap-desktop: 16px;
-    --default-gap-mobile: 7px;
+  --pink: #FA68DA;
+  --yellow: #FFE897;
+  --default-gap-desktop: 16px;
+  --default-gap-mobile: 7px;
+  --footer-height: 20px;
 }
